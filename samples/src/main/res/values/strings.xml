@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Material ArcMenu Demo</string>
+    <string name="title_activity_image_button">Arc Menu On Left</string>
 </resources>
