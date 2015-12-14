@@ -9,6 +9,7 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.AttrRes;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -18,6 +19,7 @@ import android.view.ViewGroup;
 /**
  * Created by Saurabh on 14/12/15.
  */
+@CoordinatorLayout.DefaultBehavior(MoveUpwardBehaviour.class)
 public class ArcMenu extends ViewGroup {
 
     private static final double POSITIVE_QUADRANT = 90;
