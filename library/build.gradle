@@ -18,8 +18,32 @@ android {
     }
 }
 
+ext {
+    // Where you will see your artifact in Bintray's web interface
+    // The "bintrayName" should match the name of the Bintray repro.
+    bintrayRepo = 'maven'
+    bintrayName = 'material-arc-menu'
+
+    // Maven metadata
+    publishedGroupId = 'com.sa90.materialarcmenu'
+    libraryName = 'MaterialArcMenu'
+    // Save yourself a head ache, and set this equal to the name of the Android Studio library
+    // module. The artifact name needs to match the name of the library.
+    artifact = 'library'
+
+    libraryDescription = 'An android custom view which allows you to have a arc style-menu on your pages'
+    libraryVersion = '1.0.0'
+
+    developerId = 'saurabharora90'
+    developerName = 'Saurabh Arora'
+    developerEmail = 'saurabharora90@gmail.com'
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
 }
+
+apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/bintrayv1.gradle'
