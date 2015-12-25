@@ -1,3 +1,5 @@
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MaterialArcMenu-green.svg?style=true)](https://android-arsenal.com/details/1/2936)
+
 Material Arc Menu
 =================
 
@@ -107,18 +109,19 @@ Currently the library offers the following customization options:
  - `menu_ripple_color`: Controls the ripple color of the FAB Menu. Defaults to `colorControlHighlight`
  - `menu_radius`: Controls the radius of the arc
  - `menu_open`: Controls which side of the FAB menu is the arc menu displayed on. Currently supports one of `arc_left` or `arc_right`
+ - `menu_animation_time`: Controls the animation time to transition the menu from close to open state and vice versa
 
 License
 -------
 
     Copyright 2015 Saurabh Arora
-    
+
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
-    
+
        http://www.apache.org/licenses/LICENSE-2.0
-    
+
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
