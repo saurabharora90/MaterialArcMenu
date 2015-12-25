@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         arcMenu = (ArcMenu) findViewById(R.id.arcMenu);
-        arcMenu.setAnimationTime(600);
+        //arcMenu.setAnimationTime(600);
 
         arcMenu.setStateChangeListener(new StateChangeListener() {
             @Override
@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.fab1).setOnClickListener(subMenuClickListener);
         findViewById(R.id.tvNext).setOnClickListener(mNextClickListener);
+        findViewById(R.id.tvAnimationDemo).setOnClickListener(mAnimationTimeDemoClickListener);
     }
 
     private View.OnClickListener subMenuClickListener = new View.OnClickListener() {
@@ -52,6 +53,14 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(MainActivity.this, ImageButtonActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    private View.OnClickListener mAnimationTimeDemoClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(MainActivity.this, AnimationTimeActivity.class);
             startActivity(intent);
         }
     };
