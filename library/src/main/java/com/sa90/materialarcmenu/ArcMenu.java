@@ -37,6 +37,7 @@ public class ArcMenu extends ViewGroup {
     double mQuadrantAngle;
     MenuSideEnum mMenuSideEnum;
     int cx, cy; //Represents the center points of the circle whose arc we are considering
+    private StateChangeListener mStateChangeListener;
 
     public ArcMenu(Context context) {
         super(context);
@@ -258,7 +259,8 @@ public class ArcMenu extends ViewGroup {
 
             @Override
             public void onAnimationEnd(Animator animation) {
-
+                if(mStateChangeListener!=null)
+                    mStateChangeListener.onMenuOpened();
             }
 
             @Override
@@ -295,6 +297,8 @@ public class ArcMenu extends ViewGroup {
             @Override
             public void onAnimationEnd(Animator animation) {
                 toggleVisibilityOfAllChildViews(mIsOpened);
+                if(mStateChangeListener!=null)
+                    mStateChangeListener.onMenuClosed();
             }
 
             @Override
@@ -326,5 +330,9 @@ public class ArcMenu extends ViewGroup {
 
     public void setAnimationTime(long animationTime) {
         mAnimationTime = animationTime;
+    }
+
+    public void setmStateChangeListener(StateChangeListener stateChangeListener) {
+        this.mStateChangeListener = stateChangeListener;
     }
 }
