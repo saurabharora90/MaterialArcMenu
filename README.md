@@ -111,6 +111,20 @@ Currently the library offers the following customization options:
  - `menu_open`: Controls which side of the FAB menu is the arc menu displayed on. Currently supports one of `arc_left` or `arc_right`
  - `menu_animation_time`: Controls the animation time to transition the menu from close to open state and vice versa. The time is represented in milli-seconds
 
+API
+-------
+Currently the library offers the following API's
+
+ - `toggleMenu`: Open or close the menu depending on its current state.
+ - `isMenuOpened`: Returns whether the menu is opened or closed.
+ - `setAnimationTime`: Controls the animation time to transition the menu from close to open state and vice versa. The time is represented in milli-seconds
+ - `setStateChangeListener`: Allows you to listen to the state changes of the Menu.
+
+    public interface StateChangeListener {
+        void onMenuOpened();
+        void onMenuClosed();
+    }
+
 License
 -------
 
