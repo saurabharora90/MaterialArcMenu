@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.sa90.arcdemo.MainActivity">
+    tools:context=".AnimationTimeActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -25,25 +25,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="?android:attr/actionBarSize"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvNext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Click here for Example usage with Menu on Left"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tvAnimationDemo"
+            <EditText
+                android:id="@+id/etAnimationTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Enter Animation Time"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnSet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Click here for Animation Time demo"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            android:text="Set Animation Time"/>
 
     </LinearLayout>
 
@@ -53,29 +56,29 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:menu_open="arc_left"
-        app:menu_scr="@android:drawable/ic_dialog_dialer">
+        app:menu_scr="@android:drawable/ic_dialog_dialer"
+        app:menu_open="arc_left">
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_dialog_email" />
+            android:src="@android:drawable/ic_dialog_email"
+            android:layout_height="wrap_content" />
 
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_dialog_alert" />
+            android:src="@android:drawable/ic_dialog_alert"
+            android:layout_height="wrap_content" />
 
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_dialog_info" />
+            android:src="@android:drawable/ic_dialog_info"
+            android:layout_height="wrap_content" />
 
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_dialog_map" />
+            android:src="@android:drawable/ic_dialog_map"
+            android:layout_height="wrap_content" />
 
     </com.sa90.materialarcmenu.ArcMenu>
 

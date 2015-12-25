@@ -25,16 +25,19 @@ public class ArcMenu extends ViewGroup {
     private static final double POSITIVE_QUADRANT = 90;
     private static final double NEGATIVE_QUADRANT = -90;
     private static final double ANGLE_FOR_ONE_SUB_MENU = 0;
+    private static final int ANIMATION_TIME = 300; //This time is in milliseconds
 
     FloatingActionButton fabMenu;
     Drawable mDrawable;
     ColorStateList mColorStateList;
     int mRippleColor;
+    long mAnimationTime;
     float mCurrentRadius, mFinalRadius;
     boolean mIsOpened = false;
     double mQuadrantAngle;
     MenuSideEnum mMenuSideEnum;
     int cx, cy; //Represents the center points of the circle whose arc we are considering
+    private StateChangeListener mStateChangeListener;
 
     public ArcMenu(Context context) {
         super(context);
@@ -54,6 +57,7 @@ public class ArcMenu extends ViewGroup {
         mColorStateList = attr.getColorStateList(R.styleable.ArcMenu_menu_color);
         mFinalRadius = attr.getDimension(R.styleable.ArcMenu_menu_radius, resources.getDimension(R.dimen.default_radius));
         mMenuSideEnum = MenuSideEnum.fromId(attr.getInt(R.styleable.ArcMenu_menu_open, 0));
+        mAnimationTime = attr.getInteger(R.styleable.ArcMenu_menu_animation_time, ANIMATION_TIME);
         mCurrentRadius = 0;
 
         if(mDrawable == null) {
@@ -238,6 +242,7 @@ public class ArcMenu extends ViewGroup {
 
     private void beginOpenAnimation() {
         ValueAnimator openMenuAnimator = ValueAnimator.ofFloat(0, mFinalRadius);
+        openMenuAnimator.setDuration(mAnimationTime);
         openMenuAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -254,7 +259,8 @@ public class ArcMenu extends ViewGroup {
 
             @Override
             public void onAnimationEnd(Animator animation) {
-
+                if(mStateChangeListener!=null)
+                    mStateChangeListener.onMenuOpened();
             }
 
             @Override
@@ -273,6 +279,7 @@ public class ArcMenu extends ViewGroup {
 
     private void beginCloseAnimation() {
         ValueAnimator closeMenuAnimator = ValueAnimator.ofFloat(mFinalRadius, 0);
+        closeMenuAnimator.setDuration(mAnimationTime);
         closeMenuAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -290,6 +297,8 @@ public class ArcMenu extends ViewGroup {
             @Override
             public void onAnimationEnd(Animator animation) {
                 toggleVisibilityOfAllChildViews(mIsOpened);
+                if(mStateChangeListener!=null)
+                    mStateChangeListener.onMenuClosed();
             }
 
             @Override
@@ -317,5 +326,13 @@ public class ArcMenu extends ViewGroup {
 
     public boolean isMenuOpened() {
         return mIsOpened;
+    }
+
+    public void setAnimationTime(long animationTime) {
+        mAnimationTime = animationTime;
+    }
+
+    public void setStateChangeListener(StateChangeListener stateChangeListener) {
+        this.mStateChangeListener = stateChangeListener;
     }
 }

@@ -21,5 +21,6 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.sa90.materialarcmenu:library:1.0.0'
+    //compile 'com.sa90.materialarcmenu:library:1.0.0'
+    compile project(":library")
 }

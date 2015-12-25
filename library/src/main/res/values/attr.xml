@@ -9,5 +9,6 @@
             <enum name="arc_left" value="0"/>
             <enum name="arc_right" value="1"/>
         </attr>
+        <attr name="menu_animation_time" format="integer"/>
     </declare-styleable>
 </resources>
