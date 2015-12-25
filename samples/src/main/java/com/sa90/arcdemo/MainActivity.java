@@ -2,11 +2,13 @@ package com.sa90.arcdemo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.sa90.materialarcmenu.ArcMenu;
+import com.sa90.materialarcmenu.StateChangeListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +23,19 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         arcMenu = (ArcMenu) findViewById(R.id.arcMenu);
+        arcMenu.setAnimationTime(600);
+
+        arcMenu.setStateChangeListener(new StateChangeListener() {
+            @Override
+            public void onMenuOpened() {
+                Snackbar.make(arcMenu, "Menu Opened", Snackbar.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onMenuClosed() {
+                Snackbar.make(arcMenu, "Menu Closed", Snackbar.LENGTH_SHORT).show();
+            }
+        });
 
         findViewById(R.id.fab1).setOnClickListener(subMenuClickListener);
         findViewById(R.id.tvNext).setOnClickListener(mNextClickListener);

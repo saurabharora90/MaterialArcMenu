@@ -332,7 +332,7 @@ public class ArcMenu extends ViewGroup {
         mAnimationTime = animationTime;
     }
 
-    public void setmStateChangeListener(StateChangeListener stateChangeListener) {
+    public void setStateChangeListener(StateChangeListener stateChangeListener) {
         this.mStateChangeListener = stateChangeListener;
     }
 }
