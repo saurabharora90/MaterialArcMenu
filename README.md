@@ -20,7 +20,7 @@ Usage
 Add a dependency to your `build.gradle`:
 
     dependencies {
-    compile 'com.sa90.materialarcmenu:library:1.0.0'
+    compile 'com.sa90.materialarcmenu:library:1.1.0'
 }
 
 and include the `com.sa90.materialarcmenu.ArcMenu` as a viewgroup (with the sub-menu's as child) in your layout.
@@ -109,7 +109,7 @@ Currently the library offers the following customization options:
  - `menu_ripple_color`: Controls the ripple color of the FAB Menu. Defaults to `colorControlHighlight`
  - `menu_radius`: Controls the radius of the arc
  - `menu_open`: Controls which side of the FAB menu is the arc menu displayed on. Currently supports one of `arc_left` or `arc_right`
- - `menu_animation_time`: Controls the animation time to transition the menu from close to open state and vice versa
+ - `menu_animation_time`: Controls the animation time to transition the menu from close to open state and vice versa. The time is represented in milli-seconds
 
 License
 -------
