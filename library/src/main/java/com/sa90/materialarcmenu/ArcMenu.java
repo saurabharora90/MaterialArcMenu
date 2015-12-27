@@ -32,7 +32,7 @@ public class ArcMenu extends ViewGroup {
     ColorStateList mColorStateList;
     int mRippleColor;
     long mAnimationTime;
-    float mCurrentRadius, mFinalRadius;
+    float mCurrentRadius, mFinalRadius, mElevation;
     boolean mIsOpened = false;
     double mQuadrantAngle;
     MenuSideEnum mMenuSideEnum;
@@ -56,6 +56,7 @@ public class ArcMenu extends ViewGroup {
         mDrawable = attr.getDrawable(R.styleable.ArcMenu_menu_scr);
         mColorStateList = attr.getColorStateList(R.styleable.ArcMenu_menu_color);
         mFinalRadius = attr.getDimension(R.styleable.ArcMenu_menu_radius, resources.getDimension(R.dimen.default_radius));
+        mElevation = attr.getDimension(R.styleable.ArcMenu_menu_elevation, resources.getDimension(R.dimen.default_elevation));
         mMenuSideEnum = MenuSideEnum.fromId(attr.getInt(R.styleable.ArcMenu_menu_open, 0));
         mAnimationTime = attr.getInteger(R.styleable.ArcMenu_menu_animation_time, ANIMATION_TIME);
         mCurrentRadius = 0;
@@ -96,6 +97,9 @@ public class ArcMenu extends ViewGroup {
         fabMenu.setBackgroundTintList(mColorStateList);
         fabMenu.setOnClickListener(mMenuClickListener);
         fabMenu.setRippleColor(mRippleColor);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            fabMenu.setElevation(mElevation);
 
         addView(fabMenu);
     }

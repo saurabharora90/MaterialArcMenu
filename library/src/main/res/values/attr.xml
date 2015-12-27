@@ -10,5 +10,6 @@
             <enum name="arc_right" value="1"/>
         </attr>
         <attr name="menu_animation_time" format="integer"/>
+        <attr name="menu_elevation" format="dimension"/>
     </declare-styleable>
 </resources>
