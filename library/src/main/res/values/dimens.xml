@@ -1,3 +1,4 @@
 <resources>
     <dimen name="default_radius">150dp</dimen>
+    <dimen name="default_elevation">6dp</dimen>
 </resources>
