@@ -32,7 +32,7 @@ ext {
     artifact = 'library'
 
     libraryDescription = 'An android custom view which allows you to have a arc style-menu on your pages'
-    libraryVersion = '1.1.0'
+    libraryVersion = '1.1.1'
 
     developerId = 'saurabharora90'
     developerName = 'Saurabh Arora'
