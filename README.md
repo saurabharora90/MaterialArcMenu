@@ -20,7 +20,7 @@ Usage
 Add a dependency to your `build.gradle`:
 
     dependencies {
-    compile 'com.sa90.materialarcmenu:library:1.1.1'
+    compile 'com.sa90.materialarcmenu:library:1.2'
 }
 
 and include the `com.sa90.materialarcmenu.ArcMenu` as a viewgroup (with the sub-menu's as child) in your layout.
