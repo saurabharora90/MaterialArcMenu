@@ -11,9 +11,9 @@ It also implements the CoordinatorLayout Behaviour to work with Snackbar
 
 Demo
 -------
-![Arc Menu](https://raw.githubusercontent.com/saurabharora90/MaterialArcMenu/master/assets/show_menu.gif)
+![Arc Menu](https://raw.githubusercontent.com/saurabharora90/MaterialArcMenu/develop/assets/show_menu.gif)
 
-![Snackbar support](https://raw.githubusercontent.com/saurabharora90/MaterialArcMenu/master/assets/snackbar.gif)
+![Snackbar support](https://raw.githubusercontent.com/saurabharora90/MaterialArcMenu/develop/assets/snackbar.gif)
 
 Usage
 -------
