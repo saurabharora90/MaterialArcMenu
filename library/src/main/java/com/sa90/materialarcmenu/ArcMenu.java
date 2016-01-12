@@ -1,6 +1,8 @@
 package com.sa90.materialarcmenu;
 
 import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -15,6 +17,10 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Saurabh on 14/12/15.
@@ -32,7 +38,7 @@ public class ArcMenu extends ViewGroup {
     ColorStateList mColorStateList;
     int mRippleColor;
     long mAnimationTime;
-    float mCurrentRadius, mFinalRadius, mElevation;
+    float mCurrentRadius, mFinalRadius, mElevation, mMargin;
     boolean mIsOpened = false;
     double mQuadrantAngle;
     MenuSideEnum mMenuSideEnum;
@@ -246,7 +252,6 @@ public class ArcMenu extends ViewGroup {
 
     private void beginOpenAnimation() {
         ValueAnimator openMenuAnimator = ValueAnimator.ofFloat(0, mFinalRadius);
-        openMenuAnimator.setDuration(mAnimationTime);
         openMenuAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -255,7 +260,25 @@ public class ArcMenu extends ViewGroup {
             }
         });
 
-        openMenuAnimator.addListener(new Animator.AnimatorListener() {
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.setInterpolator(new AccelerateInterpolator());
+
+        List<Animator> animationCollection = new ArrayList<>(getSubMenuCount() + 1);
+        animationCollection.add(openMenuAnimator);
+
+        for (int i = 0; i < getChildCount(); i++) {
+            View view = getChildAt(i);
+            if(view == fabMenu)
+                continue;
+
+            animationCollection.add(ObjectAnimator.ofFloat(view, "scaleX", 0, 1));
+            animationCollection.add(ObjectAnimator.ofFloat(view, "scaleY", 0, 1));
+            animationCollection.add(ObjectAnimator.ofFloat(view, "alpha", 0, 1));
+        }
+
+        animatorSet.playTogether(animationCollection);
+        animatorSet.setDuration(mAnimationTime);
+        animatorSet.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
                 toggleVisibilityOfAllChildViews(mIsOpened);
@@ -278,12 +301,11 @@ public class ArcMenu extends ViewGroup {
             }
         });
 
-        openMenuAnimator.start();
+        animatorSet.start();
     }
 
     private void beginCloseAnimation() {
         ValueAnimator closeMenuAnimator = ValueAnimator.ofFloat(mFinalRadius, 0);
-        closeMenuAnimator.setDuration(mAnimationTime);
         closeMenuAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -292,7 +314,25 @@ public class ArcMenu extends ViewGroup {
             }
         });
 
-        closeMenuAnimator.addListener(new Animator.AnimatorListener() {
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.setInterpolator(new AccelerateInterpolator());
+
+        List<Animator> animationCollection = new ArrayList<>(getSubMenuCount() + 1);
+        animationCollection.add(closeMenuAnimator);
+
+        for (int i = 0; i < getChildCount(); i++) {
+            View view = getChildAt(i);
+            if(view == fabMenu)
+                continue;
+
+            animationCollection.add(ObjectAnimator.ofFloat(view, "scaleX", 1, 0));
+            animationCollection.add(ObjectAnimator.ofFloat(view, "scaleY", 1, 0));
+            animationCollection.add(ObjectAnimator.ofFloat(view, "alpha", 1, 0));
+        }
+
+        animatorSet.playTogether(animationCollection);
+        animatorSet.setDuration(mAnimationTime);
+        animatorSet.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
 
@@ -315,8 +355,7 @@ public class ArcMenu extends ViewGroup {
 
             }
         });
-
-        closeMenuAnimator.start();
+        animatorSet.start();
     }
 
     //ALL API Calls
