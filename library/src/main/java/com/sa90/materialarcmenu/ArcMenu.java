@@ -314,11 +314,14 @@ public class ArcMenu extends ViewGroup {
             }
         });
 
-        AnimatorSet animatorSet = new AnimatorSet();
+        final AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.setInterpolator(new AccelerateInterpolator());
-
         List<Animator> animationCollection = new ArrayList<>(getSubMenuCount() + 1);
         animationCollection.add(closeMenuAnimator);
+
+        AnimatorSet rotateAnimatorSet = new AnimatorSet();
+        rotateAnimatorSet.setInterpolator(new AccelerateInterpolator());
+        List<Animator> rotateAnimationCollection = new ArrayList<>(getSubMenuCount());
 
         for (int i = 0; i < getChildCount(); i++) {
             View view = getChildAt(i);
@@ -328,6 +331,8 @@ public class ArcMenu extends ViewGroup {
             animationCollection.add(ObjectAnimator.ofFloat(view, "scaleX", 1, 0));
             animationCollection.add(ObjectAnimator.ofFloat(view, "scaleY", 1, 0));
             animationCollection.add(ObjectAnimator.ofFloat(view, "alpha", 1, 0));
+
+            rotateAnimationCollection.add(ObjectAnimator.ofFloat(view, "rotation", 0, 360));
         }
 
         animatorSet.playTogether(animationCollection);
@@ -355,7 +360,31 @@ public class ArcMenu extends ViewGroup {
 
             }
         });
-        animatorSet.start();
+
+        rotateAnimatorSet.playTogether(rotateAnimationCollection);
+        rotateAnimatorSet.setDuration(mAnimationTime/3);
+        rotateAnimatorSet.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                animatorSet.start();
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+
+        rotateAnimatorSet.start();
     }
 
     //ALL API Calls
