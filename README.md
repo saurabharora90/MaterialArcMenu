@@ -11,16 +11,16 @@ It also implements the CoordinatorLayout Behaviour to work with Snackbar
 
 Demo
 -------
-![Arc Menu](https://raw.githubusercontent.com/saurabharora90/MaterialArcMenu/master/assets/show_menu.gif)
+![Arc Menu](https://raw.githubusercontent.com/saurabharora90/MaterialArcMenu/develop/assets/show_menu.gif)
 
-![Snackbar support](https://raw.githubusercontent.com/saurabharora90/MaterialArcMenu/master/assets/snackbar.gif)
+![Snackbar support](https://raw.githubusercontent.com/saurabharora90/MaterialArcMenu/develop/assets/snackbar.gif)
 
 Usage
 -------
 Add a dependency to your `build.gradle`:
 
     dependencies {
-    compile 'com.sa90.materialarcmenu:library:1.1.1'
+    compile 'com.sa90.materialarcmenu:library:1.2'
 }
 
 and include the `com.sa90.materialarcmenu.ArcMenu` as a viewgroup (with the sub-menu's as child) in your layout.
