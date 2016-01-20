@@ -7,8 +7,11 @@ An android custom view which allows you to have a arc style-menu on your pages a
 
 It inserts a FAB menu on the bottom left or bottom right of the screen and allows you to control the menu options.
 
-It also implements the CoordinatorLayout Behaviour to work with Snackbar
+It also implements the CoordinatorLayout Behaviour to work with Snackbar.
 
+Change-logs
+-------
+Check out the [Release Notes](https://github.com/saurabharora90/MaterialArcMenu/releases "Releases") for the change-logs in each release.
 Demo
 -------
 ![Arc Menu](https://raw.githubusercontent.com/saurabharora90/MaterialArcMenu/develop/assets/show_menu.gif)
@@ -20,10 +23,10 @@ Usage
 Add a dependency to your `build.gradle`:
 
     dependencies {
-    compile 'com.sa90.materialarcmenu:library:1.2'
+    compile 'com.sa90.materialarcmenu:library:1.3'
 }
 
-and include the `com.sa90.materialarcmenu.ArcMenu` as a viewgroup (with the sub-menu's as child) in your layout.
+and include the `com.sa90.materialarcmenu.ArcMenu` as a viewgroup (with the sub-menu's as child) in your layout. The menu (floating action button) has a margin of 16dp added to it by default to follow the material design guidelines.
 Example:
 
     <com.sa90.materialarcmenu.ArcMenu
@@ -31,7 +34,6 @@ Example:
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
         app:menu_scr="@drawable/ic_dialog_dialer"
         app:menu_open="arc_left">
 
@@ -65,7 +67,6 @@ The sub-menu's (child) can be anything. Here is an ImageButton example:
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|start"
-        android:layout_margin="@dimen/fab_margin"
         app:menu_color="@color/colorPrimaryDark"
         app:menu_radius="200dp"
         app:menu_ripple_color="@color/darker_gray"
