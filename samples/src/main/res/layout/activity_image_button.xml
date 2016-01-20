@@ -26,7 +26,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|start"
-        android:layout_margin="@dimen/fab_margin"
         app:menu_color="@color/colorPrimaryDark"
         app:menu_radius="200dp"
         app:menu_ripple_color="@android:color/darker_gray"
