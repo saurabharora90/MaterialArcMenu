@@ -1,4 +1,5 @@
 <resources>
     <dimen name="default_radius">150dp</dimen>
     <dimen name="default_elevation">6dp</dimen>
+    <dimen name="fab_margin">16dp</dimen> <!-- In accordance with the material design guidelines -->
 </resources>

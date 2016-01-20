@@ -16,8 +16,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
+import android.widget.FrameLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ import java.util.List;
  * Created by Saurabh on 14/12/15.
  */
 @CoordinatorLayout.DefaultBehavior(MoveUpwardBehaviour.class)
-public class ArcMenu extends ViewGroup {
+public class ArcMenu extends FrameLayout {
 
     private static final double POSITIVE_QUADRANT = 90;
     private static final double NEGATIVE_QUADRANT = -90;
@@ -38,7 +38,8 @@ public class ArcMenu extends ViewGroup {
     ColorStateList mColorStateList;
     int mRippleColor;
     long mAnimationTime;
-    float mCurrentRadius, mFinalRadius, mElevation, mMargin;
+    float mCurrentRadius, mFinalRadius, mElevation;
+    int menuMargin;
     boolean mIsOpened = false;
     double mQuadrantAngle;
     MenuSideEnum mMenuSideEnum;
@@ -84,6 +85,8 @@ public class ArcMenu extends ViewGroup {
             mQuadrantAngle = POSITIVE_QUADRANT;
         else
             mQuadrantAngle = NEGATIVE_QUADRANT;
+
+        menuMargin = resources.getDimensionPixelSize(R.dimen.fab_margin);
     }
 
     /**
@@ -158,13 +161,13 @@ public class ArcMenu extends ViewGroup {
     //TODO: work on fixing this
     private void layoutMenu() {
         if(mMenuSideEnum == MenuSideEnum.ARC_RIGHT) {
-            cx = 0;
-            cy = getMeasuredHeight() - fabMenu.getMeasuredHeight();
+            cx = 0 + menuMargin;
+            cy = getMeasuredHeight() - fabMenu.getMeasuredHeight() - menuMargin;
         }
 
         else {
-            cx = getMeasuredWidth() - fabMenu.getMeasuredWidth();
-            cy = getMeasuredHeight() - fabMenu.getMeasuredHeight();
+            cx = getMeasuredWidth() - fabMenu.getMeasuredWidth() - menuMargin;
+            cy = getMeasuredHeight() - fabMenu.getMeasuredHeight() - menuMargin;
         }
 
         fabMenu.layout(cx, cy, cx + fabMenu.getMeasuredWidth(), cy + fabMenu.getMeasuredHeight());
@@ -206,6 +209,8 @@ public class ArcMenu extends ViewGroup {
             height+=(radius + maxHeight);
         }
 
+        width+= menuMargin;
+        height+= menuMargin;
         setMeasuredDimension(width, height);
     }
 
