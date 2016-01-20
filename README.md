@@ -7,8 +7,11 @@ An android custom view which allows you to have a arc style-menu on your pages a
 
 It inserts a FAB menu on the bottom left or bottom right of the screen and allows you to control the menu options.
 
-It also implements the CoordinatorLayout Behaviour to work with Snackbar
+It also implements the CoordinatorLayout Behaviour to work with Snackbar.
 
+Change-logs
+-------
+Check out the [Release Notes](https://github.com/saurabharora90/MaterialArcMenu/releases "Releases") for the change-logs in each release.
 Demo
 -------
 ![Arc Menu](https://raw.githubusercontent.com/saurabharora90/MaterialArcMenu/develop/assets/show_menu.gif)
