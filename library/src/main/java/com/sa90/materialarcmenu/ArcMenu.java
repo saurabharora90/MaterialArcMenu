@@ -412,4 +412,10 @@ public class ArcMenu extends FrameLayout {
     public void setStateChangeListener(StateChangeListener stateChangeListener) {
         this.mStateChangeListener = stateChangeListener;
     }
+
+    @SuppressWarnings("unused")
+    public void setRadius(float radius) {
+        this.mFinalRadius = radius;
+        invalidate();
+    }
 }
