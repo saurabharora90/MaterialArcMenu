@@ -86,7 +86,7 @@ public class ArcMenu extends FrameLayout {
         else
             mQuadrantAngle = NEGATIVE_QUADRANT;
 
-        menuMargin = resources.getDimensionPixelSize(R.dimen.fab_margin);
+        menuMargin = attr.getDimensionPixelSize(R.styleable.ArcMenu_menu_margin, resources.getDimensionPixelSize(R.dimen.fab_margin));
     }
 
     /**
