@@ -23,10 +23,10 @@ Usage
 Add a dependency to your `build.gradle`:
 
     dependencies {
-    compile 'com.sa90.materialarcmenu:library:1.3'
+    compile 'com.sa90.materialarcmenu:library:1.4.1'
 }
 
-and include the `com.sa90.materialarcmenu.ArcMenu` as a viewgroup (with the sub-menu's as child) in your layout. The menu (floating action button) has a margin of 16dp added to it by default to follow the material design guidelines.
+and include the `com.sa90.materialarcmenu.ArcMenu` as a viewgroup (with the sub-menu's as child) in your layout. The menu (floating action button) has a margin of 16dp (customizable) added to it by default to follow the material design guidelines.
 Example:
 
     <com.sa90.materialarcmenu.ArcMenu
@@ -110,6 +110,7 @@ Currently the library offers the following customization options:
  - `menu_ripple_color`: Controls the ripple color of the FAB Menu. Defaults to `colorControlHighlight`
  - `menu_radius`: Controls the radius of the arc
  - `menu_elevation`: Controls elevation (shadow cast) of the FAB Menu. Default to 6dp.
+ - `menu_margin`: Controls the margin applied to the FAB Menu. Currently the same margin is applied to all four corners (defaults to 16dp).
  - `menu_open`: Controls which side of the FAB menu is the arc menu displayed on. Currently supports one of `arc_left` or `arc_right`
  - `menu_animation_time`: Controls the animation time to transition the menu from close to open state and vice versa. The time is represented in milli-seconds
 
@@ -118,6 +119,7 @@ API
 Currently the library offers the following API's
 
  - `toggleMenu`: Open or close the menu depending on its current state.
+ - `setRadius`: Set the radius of the arc menu.
  - `isMenuOpened`: Returns whether the menu is opened or closed.
  - `setAnimationTime`: Controls the animation time to transition the menu from close to open state and vice versa. The time is represented in milli-seconds
  - `setStateChangeListener`: Allows you to listen to the state changes of the Menu, i.e. `onMenuOpened` and `onMenuClosed` events

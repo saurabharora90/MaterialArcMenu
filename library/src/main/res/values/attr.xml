@@ -5,6 +5,7 @@
         <attr name="menu_color" format="reference|color"/>
         <attr name="menu_ripple_color" format="color"/>
         <attr name="menu_radius" format="dimension"/>
+        <attr name="menu_margin" format="dimension"/>
         <attr name="menu_open" format="enum">
             <enum name="arc_left" value="0"/>
             <enum name="arc_right" value="1"/>

@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         arcMenu = (ArcMenu) findViewById(R.id.arcMenu);
-        //arcMenu.setAnimationTime(600);
+        arcMenu.setRadius(getResources().getDimension(R.dimen.radius));
 
         arcMenu.setStateChangeListener(new StateChangeListener() {
             @Override
