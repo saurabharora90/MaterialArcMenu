@@ -25,7 +25,10 @@
         <activity
             android:name=".AnimationTimeActivity"
             android:label="@string/title_activity_animation_time"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".TopPlacementSampleActivity"
+            android:label="Top Placement Demo"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

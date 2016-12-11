@@ -23,7 +23,7 @@ Usage
 Add a dependency to your `build.gradle`:
 
     dependencies {
-    compile 'com.sa90.materialarcmenu:library:1.4.1'
+    compile 'com.sa90.materialarcmenu:library:1.5.0'
 }
 
 and include the `com.sa90.materialarcmenu.ArcMenu` as a viewgroup (with the sub-menu's as child) in your layout. The menu (floating action button) has a margin of 16dp (customizable) added to it by default to follow the material design guidelines.
@@ -111,8 +111,9 @@ Currently the library offers the following customization options:
  - `menu_radius`: Controls the radius of the arc
  - `menu_elevation`: Controls elevation (shadow cast) of the FAB Menu. Default to 6dp.
  - `menu_margin`: Controls the margin applied to the FAB Menu. Currently the same margin is applied to all four corners (defaults to 16dp).
- - `menu_open`: Controls which side of the FAB menu is the arc menu displayed on. Currently supports one of `arc_left` or `arc_right`
+ - `menu_open`: Controls which side of the FAB menu is the arc menu displayed on. Currently supports one of `arc_left`, `arc_right` , `arc_top_left` or `arc_top_right`
  - `menu_animation_time`: Controls the animation time to transition the menu from close to open state and vice versa. The time is represented in milli-seconds
+ - `fabSize`: Sets the size of the FAB icon used in the ArcMenu. Can be either `mini` or `normal`
 
 API
 -------

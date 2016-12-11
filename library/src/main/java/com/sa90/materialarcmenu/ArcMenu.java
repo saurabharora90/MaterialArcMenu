@@ -13,6 +13,7 @@ import android.os.Build;
 import android.support.annotation.AttrRes;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
@@ -54,7 +55,8 @@ public class ArcMenu extends FrameLayout {
         super(context, attrs);
         TypedArray attr = context.obtainStyledAttributes(attrs, R.styleable.ArcMenu, 0, 0);
         init(attr);
-        fabMenu = new FloatingActionButton(context);
+
+        fabMenu = new FloatingActionButton(context, attrs);
     }
 
     private void init(TypedArray attr) {
@@ -62,17 +64,16 @@ public class ArcMenu extends FrameLayout {
 
         mDrawable = attr.getDrawable(R.styleable.ArcMenu_menu_scr);
         mColorStateList = attr.getColorStateList(R.styleable.ArcMenu_menu_color);
-        mFinalRadius = attr.getDimension(R.styleable.ArcMenu_menu_radius, resources.getDimension(R.dimen.default_radius));
-        mElevation = attr.getDimension(R.styleable.ArcMenu_menu_elevation, resources.getDimension(R.dimen.default_elevation));
+        mFinalRadius = attr.getDimension(R.styleable.ArcMenu_menu_radius,
+                resources.getDimension(R.dimen.default_radius));
+        mElevation = attr.getDimension(R.styleable.ArcMenu_menu_elevation,
+                resources.getDimension(R.dimen.default_elevation));
         mMenuSideEnum = MenuSideEnum.fromId(attr.getInt(R.styleable.ArcMenu_menu_open, 0));
         mAnimationTime = attr.getInteger(R.styleable.ArcMenu_menu_animation_time, ANIMATION_TIME);
         mCurrentRadius = 0;
 
         if(mDrawable == null) {
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-                mDrawable = resources.getDrawable(android.R.drawable.ic_dialog_email, null);
-            else
-                mDrawable = resources.getDrawable(android.R.drawable.ic_dialog_email);
+            mDrawable = ContextCompat.getDrawable(getContext(), android.R.drawable.ic_dialog_email);
         }
 
         mRippleColor = attr.getColor(R.styleable.ArcMenu_menu_ripple_color, getThemeAccentColor(getContext(), R.attr.colorControlHighlight));
@@ -81,12 +82,24 @@ public class ArcMenu extends FrameLayout {
             mColorStateList = ColorStateList.valueOf(getThemeAccentColor(getContext(), R.attr.colorAccent));
         }
 
-        if(mMenuSideEnum == MenuSideEnum.ARC_LEFT)
-            mQuadrantAngle = POSITIVE_QUADRANT;
-        else
-            mQuadrantAngle = NEGATIVE_QUADRANT;
+        switch (mMenuSideEnum) {
 
-        menuMargin = attr.getDimensionPixelSize(R.styleable.ArcMenu_menu_margin, resources.getDimensionPixelSize(R.dimen.fab_margin));
+            case ARC_LEFT:
+                mQuadrantAngle = POSITIVE_QUADRANT;
+                break;
+            case ARC_TOP_LEFT:
+                mQuadrantAngle = NEGATIVE_QUADRANT;
+                break;
+            case ARC_RIGHT:
+                mQuadrantAngle = NEGATIVE_QUADRANT;
+                break;
+            case ARC_TOP_RIGHT:
+                mQuadrantAngle = POSITIVE_QUADRANT;
+                break;
+        }
+
+        menuMargin = attr.getDimensionPixelSize(R.styleable.ArcMenu_menu_margin,
+                resources.getDimensionPixelSize(R.dimen.fab_margin));
     }
 
     /**
@@ -116,7 +129,8 @@ public class ArcMenu extends FrameLayout {
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         layoutMenu();
-        layoutChildren();
+        if(!isInEditMode())
+            layoutChildren();
     }
 
     private void layoutChildren() {
@@ -138,13 +152,17 @@ public class ArcMenu extends FrameLayout {
                 leftPoint = (int) (mCurrentRadius * Math.cos(Math.toRadians(totalAngleForChild)));
                 topPoint = (int) (mCurrentRadius * Math.sin(Math.toRadians(totalAngleForChild)));
 
-                if(mMenuSideEnum == MenuSideEnum.ARC_RIGHT) {
-                    left = cx + leftPoint;
-                    top = cy + topPoint;
-                }
-                else {
-                    left = cx - leftPoint;
-                    top = cy - topPoint;
+                switch (mMenuSideEnum) {
+
+                    case ARC_LEFT:
+                    case ARC_TOP_LEFT:
+                        left = cx - leftPoint;
+                        top = cy - topPoint;
+                        break;
+                    default:
+                        left = cx + leftPoint;
+                        top = cy + topPoint;
+                        break;
                 }
 
                 child.layout(left, top, left + child.getMeasuredWidth(), top + child.getMeasuredHeight());
@@ -160,14 +178,23 @@ public class ArcMenu extends FrameLayout {
      */
     //TODO: work on fixing this
     private void layoutMenu() {
-        if(mMenuSideEnum == MenuSideEnum.ARC_RIGHT) {
-            cx = 0 + menuMargin;
-            cy = getMeasuredHeight() - fabMenu.getMeasuredHeight() - menuMargin;
-        }
-
-        else {
-            cx = getMeasuredWidth() - fabMenu.getMeasuredWidth() - menuMargin;
-            cy = getMeasuredHeight() - fabMenu.getMeasuredHeight() - menuMargin;
+        switch (mMenuSideEnum) {
+            case ARC_LEFT:
+                cx = getMeasuredWidth() - fabMenu.getMeasuredWidth() - menuMargin;
+                cy = getMeasuredHeight() - fabMenu.getMeasuredHeight() - menuMargin;
+                break;
+            case ARC_TOP_LEFT:
+                cx = getMeasuredWidth() - fabMenu.getMeasuredWidth() - menuMargin;
+                cy = menuMargin;
+                break;
+            case ARC_RIGHT:
+                cx = menuMargin;
+                cy = getMeasuredHeight() - fabMenu.getMeasuredHeight() - menuMargin;
+                break;
+            case ARC_TOP_RIGHT:
+                cx = menuMargin;
+                cy = menuMargin;
+                break;
         }
 
         fabMenu.layout(cx, cy, cx + fabMenu.getMeasuredWidth(), cy + fabMenu.getMeasuredHeight());
@@ -393,6 +420,10 @@ public class ArcMenu extends FrameLayout {
     }
 
     //ALL API Calls
+
+    /**
+     * Toggles the state of the ArcMenu, i.e. closes it if it is open and opens it if it is closed
+     */
     public void toggleMenu() {
         mIsOpened = !mIsOpened;
         if(mIsOpened)
@@ -401,19 +432,36 @@ public class ArcMenu extends FrameLayout {
             beginCloseAnimation();
     }
 
+    /**
+     * Get the state of the ArcMenu, i.e. whether it is open or closed
+     * @return true if the menu is open
+     */
     public boolean isMenuOpened() {
         return mIsOpened;
     }
 
+    /**
+     * Controls the animation time to transition the menu from close to open state and vice versa.
+     * The time is represented in milli-seconds
+     * @param animationTime
+     */
     public void setAnimationTime(long animationTime) {
         mAnimationTime = animationTime;
     }
 
+    /**
+     * Allows you to listen to the state changes of the Menu, i.e.
+     * {@link StateChangeListener#onMenuOpened()} and {@link StateChangeListener#onMenuClosed()} events
+     * @param stateChangeListener
+     */
     public void setStateChangeListener(StateChangeListener stateChangeListener) {
         this.mStateChangeListener = stateChangeListener;
     }
 
     @SuppressWarnings("unused")
+    /**
+     * Sets the display radius of the ArcMenu
+     */
     public void setRadius(float radius) {
         this.mFinalRadius = radius;
         invalidate();
