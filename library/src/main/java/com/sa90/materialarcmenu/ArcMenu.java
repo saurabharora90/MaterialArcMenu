@@ -82,10 +82,21 @@ public class ArcMenu extends FrameLayout {
             mColorStateList = ColorStateList.valueOf(getThemeAccentColor(getContext(), R.attr.colorAccent));
         }
 
-        if(mMenuSideEnum == MenuSideEnum.ARC_LEFT)
-            mQuadrantAngle = POSITIVE_QUADRANT;
-        else
-            mQuadrantAngle = NEGATIVE_QUADRANT;
+        switch (mMenuSideEnum) {
+
+            case ARC_LEFT:
+                mQuadrantAngle = POSITIVE_QUADRANT;
+                break;
+            case ARC_TOP_LEFT:
+                mQuadrantAngle = NEGATIVE_QUADRANT;
+                break;
+            case ARC_RIGHT:
+                mQuadrantAngle = NEGATIVE_QUADRANT;
+                break;
+            case ARC_TOP_RIGHT:
+                mQuadrantAngle = POSITIVE_QUADRANT;
+                break;
+        }
 
         menuMargin = attr.getDimensionPixelSize(R.styleable.ArcMenu_menu_margin,
                 resources.getDimensionPixelSize(R.dimen.fab_margin));
@@ -118,7 +129,8 @@ public class ArcMenu extends FrameLayout {
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         layoutMenu();
-        layoutChildren();
+        if(!isInEditMode())
+            layoutChildren();
     }
 
     private void layoutChildren() {
@@ -140,13 +152,17 @@ public class ArcMenu extends FrameLayout {
                 leftPoint = (int) (mCurrentRadius * Math.cos(Math.toRadians(totalAngleForChild)));
                 topPoint = (int) (mCurrentRadius * Math.sin(Math.toRadians(totalAngleForChild)));
 
-                if(mMenuSideEnum == MenuSideEnum.ARC_RIGHT) {
-                    left = cx + leftPoint;
-                    top = cy + topPoint;
-                }
-                else {
-                    left = cx - leftPoint;
-                    top = cy - topPoint;
+                switch (mMenuSideEnum) {
+
+                    case ARC_LEFT:
+                    case ARC_TOP_LEFT:
+                        left = cx - leftPoint;
+                        top = cy - topPoint;
+                        break;
+                    default:
+                        left = cx + leftPoint;
+                        top = cy + topPoint;
+                        break;
                 }
 
                 child.layout(left, top, left + child.getMeasuredWidth(), top + child.getMeasuredHeight());
@@ -162,14 +178,23 @@ public class ArcMenu extends FrameLayout {
      */
     //TODO: work on fixing this
     private void layoutMenu() {
-        if(mMenuSideEnum == MenuSideEnum.ARC_RIGHT) {
-            cx = 0 + menuMargin;
-            cy = getMeasuredHeight() - fabMenu.getMeasuredHeight() - menuMargin;
-        }
-
-        else {
-            cx = getMeasuredWidth() - fabMenu.getMeasuredWidth() - menuMargin;
-            cy = getMeasuredHeight() - fabMenu.getMeasuredHeight() - menuMargin;
+        switch (mMenuSideEnum) {
+            case ARC_LEFT:
+                cx = getMeasuredWidth() - fabMenu.getMeasuredWidth() - menuMargin;
+                cy = getMeasuredHeight() - fabMenu.getMeasuredHeight() - menuMargin;
+                break;
+            case ARC_TOP_LEFT:
+                cx = getMeasuredWidth() - fabMenu.getMeasuredWidth() - menuMargin;
+                cy = menuMargin;
+                break;
+            case ARC_RIGHT:
+                cx = menuMargin;
+                cy = getMeasuredHeight() - fabMenu.getMeasuredHeight() - menuMargin;
+                break;
+            case ARC_TOP_RIGHT:
+                cx = menuMargin;
+                cy = menuMargin;
+                break;
         }
 
         fabMenu.layout(cx, cy, cx + fabMenu.getMeasuredWidth(), cy + fabMenu.getMeasuredHeight());
