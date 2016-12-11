@@ -393,6 +393,10 @@ public class ArcMenu extends FrameLayout {
     }
 
     //ALL API Calls
+
+    /**
+     * Toggles the state of the ArcMenu, i.e. closes it if it is open and opens it if it is closed
+     */
     public void toggleMenu() {
         mIsOpened = !mIsOpened;
         if(mIsOpened)
@@ -401,19 +405,36 @@ public class ArcMenu extends FrameLayout {
             beginCloseAnimation();
     }
 
+    /**
+     * Get the state of the ArcMenu, i.e. whether it is open or closed
+     * @return true if the menu is open
+     */
     public boolean isMenuOpened() {
         return mIsOpened;
     }
 
+    /**
+     * Controls the animation time to transition the menu from close to open state and vice versa.
+     * The time is represented in milli-seconds
+     * @param animationTime
+     */
     public void setAnimationTime(long animationTime) {
         mAnimationTime = animationTime;
     }
 
+    /**
+     * Allows you to listen to the state changes of the Menu, i.e.
+     * {@link StateChangeListener#onMenuOpened()} and {@link StateChangeListener#onMenuClosed()} events
+     * @param stateChangeListener
+     */
     public void setStateChangeListener(StateChangeListener stateChangeListener) {
         this.mStateChangeListener = stateChangeListener;
     }
 
     @SuppressWarnings("unused")
+    /**
+     * Sets the display radius of the ArcMenu
+     */
     public void setRadius(float radius) {
         this.mFinalRadius = radius;
         invalidate();
