@@ -28,40 +28,16 @@
         android:orientation="vertical"
         android:padding="10dp">
 
-        <TextView
-            android:id="@+id/tvNext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Click here for Example usage with Menu on Left"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/tvAnimationDemo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Click here for Animation Time demo"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/tvTopPlacement"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Click here for top placement sample"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
-
     </LinearLayout>
 
     <com.sa90.materialarcmenu.ArcMenu
         android:id="@+id/arcMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        app:menu_open="arc_left"
+        android:layout_gravity="top|end"
         app:fabSize="normal"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:menu_open="arc_top_left"
         app:menu_scr="@android:drawable/ic_dialog_dialer">
 
         <android.support.design.widget.FloatingActionButton

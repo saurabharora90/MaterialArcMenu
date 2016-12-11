@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.fab1).setOnClickListener(subMenuClickListener);
         findViewById(R.id.tvNext).setOnClickListener(mNextClickListener);
         findViewById(R.id.tvAnimationDemo).setOnClickListener(mAnimationTimeDemoClickListener);
+        findViewById(R.id.tvTopPlacement).setOnClickListener(mTopPlacementClickListener);
     }
 
     private View.OnClickListener subMenuClickListener = new View.OnClickListener() {
@@ -61,6 +62,14 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(MainActivity.this, AnimationTimeActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    private View.OnClickListener mTopPlacementClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(MainActivity.this, TopPlacementSampleActivity.class);
             startActivity(intent);
         }
     };
