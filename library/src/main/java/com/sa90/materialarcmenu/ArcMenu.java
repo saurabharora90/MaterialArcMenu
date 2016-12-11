@@ -13,6 +13,7 @@ import android.os.Build;
 import android.support.annotation.AttrRes;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
@@ -62,17 +63,16 @@ public class ArcMenu extends FrameLayout {
 
         mDrawable = attr.getDrawable(R.styleable.ArcMenu_menu_scr);
         mColorStateList = attr.getColorStateList(R.styleable.ArcMenu_menu_color);
-        mFinalRadius = attr.getDimension(R.styleable.ArcMenu_menu_radius, resources.getDimension(R.dimen.default_radius));
-        mElevation = attr.getDimension(R.styleable.ArcMenu_menu_elevation, resources.getDimension(R.dimen.default_elevation));
+        mFinalRadius = attr.getDimension(R.styleable.ArcMenu_menu_radius,
+                resources.getDimension(R.dimen.default_radius));
+        mElevation = attr.getDimension(R.styleable.ArcMenu_menu_elevation,
+                resources.getDimension(R.dimen.default_elevation));
         mMenuSideEnum = MenuSideEnum.fromId(attr.getInt(R.styleable.ArcMenu_menu_open, 0));
         mAnimationTime = attr.getInteger(R.styleable.ArcMenu_menu_animation_time, ANIMATION_TIME);
         mCurrentRadius = 0;
 
         if(mDrawable == null) {
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-                mDrawable = resources.getDrawable(android.R.drawable.ic_dialog_email, null);
-            else
-                mDrawable = resources.getDrawable(android.R.drawable.ic_dialog_email);
+            mDrawable = ContextCompat.getDrawable(getContext(), android.R.drawable.ic_dialog_email);
         }
 
         mRippleColor = attr.getColor(R.styleable.ArcMenu_menu_ripple_color, getThemeAccentColor(getContext(), R.attr.colorControlHighlight));
@@ -86,7 +86,8 @@ public class ArcMenu extends FrameLayout {
         else
             mQuadrantAngle = NEGATIVE_QUADRANT;
 
-        menuMargin = attr.getDimensionPixelSize(R.styleable.ArcMenu_menu_margin, resources.getDimensionPixelSize(R.dimen.fab_margin));
+        menuMargin = attr.getDimensionPixelSize(R.styleable.ArcMenu_menu_margin,
+                resources.getDimensionPixelSize(R.dimen.fab_margin));
     }
 
     /**
