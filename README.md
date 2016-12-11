@@ -113,6 +113,7 @@ Currently the library offers the following customization options:
  - `menu_margin`: Controls the margin applied to the FAB Menu. Currently the same margin is applied to all four corners (defaults to 16dp).
  - `menu_open`: Controls which side of the FAB menu is the arc menu displayed on. Currently supports one of `arc_left` or `arc_right`
  - `menu_animation_time`: Controls the animation time to transition the menu from close to open state and vice versa. The time is represented in milli-seconds
+ - `fabSize`: Sets the size of the FAB icon used in the ArcMenu. Can be either `mini` or `normal`
 
 API
 -------
