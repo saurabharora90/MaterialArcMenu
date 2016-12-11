@@ -53,6 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         app:menu_open="arc_left"
+        app:fabSize="normal"
         app:menu_scr="@android:drawable/ic_dialog_dialer">
 
         <android.support.design.widget.FloatingActionButton

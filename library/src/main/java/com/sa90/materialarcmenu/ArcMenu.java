@@ -55,7 +55,8 @@ public class ArcMenu extends FrameLayout {
         super(context, attrs);
         TypedArray attr = context.obtainStyledAttributes(attrs, R.styleable.ArcMenu, 0, 0);
         init(attr);
-        fabMenu = new FloatingActionButton(context);
+
+        fabMenu = new FloatingActionButton(context, attrs);
     }
 
     private void init(TypedArray attr) {
