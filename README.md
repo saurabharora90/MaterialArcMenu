@@ -12,6 +12,7 @@ It also implements the CoordinatorLayout Behaviour to work with Snackbar.
 Change-logs
 -------
 Check out the [Release Notes](https://github.com/saurabharora90/MaterialArcMenu/releases "Releases") for the change-logs in each release.
+
 Demo
 -------
 ![Arc Menu](https://raw.githubusercontent.com/saurabharora90/MaterialArcMenu/develop/assets/show_menu.gif)
