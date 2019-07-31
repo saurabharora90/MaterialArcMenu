@@ -1,11 +1,13 @@
 package com.sa90.arcdemo;
 
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageButton;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.snackbar.Snackbar;
 
 public class ImageButtonActivity extends AppCompatActivity {
 
@@ -13,10 +15,10 @@ public class ImageButtonActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_button);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ImageButton ib1 = (ImageButton) findViewById(R.id.ib1);
+        ImageButton ib1 = findViewById(R.id.ib1);
         ib1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

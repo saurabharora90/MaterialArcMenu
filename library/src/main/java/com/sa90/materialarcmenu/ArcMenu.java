@@ -10,15 +10,19 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.AttrRes;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.FrameLayout;
+
+import androidx.annotation.AttrRes;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.content.ContextCompat;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +30,7 @@ import java.util.List;
 /**
  * Created by Saurabh on 14/12/15.
  */
-@CoordinatorLayout.DefaultBehavior(MoveUpwardBehaviour.class)
-public class ArcMenu extends FrameLayout {
+public class ArcMenu extends FrameLayout implements CoordinatorLayout.AttachedBehavior {
 
     private static final double POSITIVE_QUADRANT = 90;
     private static final double NEGATIVE_QUADRANT = -90;
@@ -35,7 +38,7 @@ public class ArcMenu extends FrameLayout {
     private static final int ANIMATION_TIME = 300; //This time is in milliseconds
 
     FloatingActionButton fabMenu;
-    Drawable mDrawable;
+    public Drawable mDrawable;
     ColorStateList mColorStateList;
     int mRippleColor;
     long mAnimationTime;
@@ -419,6 +422,12 @@ public class ArcMenu extends FrameLayout {
         rotateAnimatorSet.start();
     }
 
+    @NonNull
+    @Override
+    public CoordinatorLayout.Behavior getBehavior() {
+        return new MoveUpwardBehaviour();
+    }
+
     //ALL API Calls
 
     /**
@@ -465,5 +474,9 @@ public class ArcMenu extends FrameLayout {
     public void setRadius(float radius) {
         this.mFinalRadius = radius;
         invalidate();
+    }
+
+    public void setMenuIcon(Drawable drawable) {
+        fabMenu.setImageDrawable(drawable);
     }
 }
