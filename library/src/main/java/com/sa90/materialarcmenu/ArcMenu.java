@@ -17,6 +17,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.widget.FrameLayout;
 
 import androidx.annotation.AttrRes;
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
@@ -473,5 +474,9 @@ public class ArcMenu extends FrameLayout implements CoordinatorLayout.AttachedBe
     public void setRadius(float radius) {
         this.mFinalRadius = radius;
         invalidate();
+    }
+
+    public void setMenuIcon(Drawable drawable) {
+        fabMenu.setImageDrawable(drawable);
     }
 }
