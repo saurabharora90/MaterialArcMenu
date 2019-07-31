@@ -129,7 +129,7 @@ Currently the library offers the following API's
 License
 -------
 
-    Copyright 2015 Saurabh Arora
+    Copyright 2019 Saurabh Arora
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
