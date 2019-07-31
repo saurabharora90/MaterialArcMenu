@@ -63,7 +63,7 @@
         android:layout_gravity="bottom|end"
         app:menu_open="arc_left"
         app:fabSize="normal"
-        app:menu_scr="@android:drawable/ic_dialog_dialer">
+        app:menu_scr="@drawable/avd_anim">
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab1"

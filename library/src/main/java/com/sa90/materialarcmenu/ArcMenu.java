@@ -35,7 +35,7 @@ public class ArcMenu extends FrameLayout {
     private static final int ANIMATION_TIME = 300; //This time is in milliseconds
 
     FloatingActionButton fabMenu;
-    Drawable mDrawable;
+    public Drawable mDrawable;
     ColorStateList mColorStateList;
     int mRippleColor;
     long mAnimationTime;
