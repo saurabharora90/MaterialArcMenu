@@ -1,12 +1,13 @@
 package com.sa90.arcdemo;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.sa90.materialarcmenu.ArcMenu;
 
@@ -20,12 +21,12 @@ public class AnimationTimeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animation_time);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        arcMenu = (ArcMenu) findViewById(R.id.arcMenu);
-        btnSet = (Button) findViewById(R.id.btnSet);
-        etAnimationTime = (EditText) findViewById(R.id.etAnimationTime);
+        arcMenu = findViewById(R.id.arcMenu);
+        btnSet = findViewById(R.id.btnSet);
+        etAnimationTime = findViewById(R.id.etAnimationTime);
 
         btnSet.setOnClickListener(mSetClickListener);
     }

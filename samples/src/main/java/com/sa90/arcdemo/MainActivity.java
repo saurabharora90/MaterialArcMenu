@@ -3,11 +3,12 @@ package com.sa90.arcdemo;
 import android.content.Intent;
 import android.graphics.drawable.Animatable;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.snackbar.Snackbar;
 import com.sa90.materialarcmenu.ArcMenu;
 import com.sa90.materialarcmenu.StateChangeListener;
 
@@ -20,10 +21,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        arcMenu = (ArcMenu) findViewById(R.id.arcMenu);
+        arcMenu = findViewById(R.id.arcMenu);
         arcMenu.setRadius(getResources().getDimension(R.dimen.radius));
 
         arcMenu.setStateChangeListener(new StateChangeListener() {
