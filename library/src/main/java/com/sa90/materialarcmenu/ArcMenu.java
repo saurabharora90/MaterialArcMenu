@@ -17,6 +17,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.widget.FrameLayout;
 
 import androidx.annotation.AttrRes;
+import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
 
@@ -28,8 +29,7 @@ import java.util.List;
 /**
  * Created by Saurabh on 14/12/15.
  */
-@CoordinatorLayout.DefaultBehavior(MoveUpwardBehaviour.class)
-public class ArcMenu extends FrameLayout {
+public class ArcMenu extends FrameLayout implements CoordinatorLayout.AttachedBehavior {
 
     private static final double POSITIVE_QUADRANT = 90;
     private static final double NEGATIVE_QUADRANT = -90;
@@ -419,6 +419,12 @@ public class ArcMenu extends FrameLayout {
         });
 
         rotateAnimatorSet.start();
+    }
+
+    @NonNull
+    @Override
+    public CoordinatorLayout.Behavior getBehavior() {
+        return new MoveUpwardBehaviour();
     }
 
     //ALL API Calls
